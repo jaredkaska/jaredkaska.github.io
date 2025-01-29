@@ -2,29 +2,33 @@ body {
     background-color:313338;
     color:white;
     font-family: 'Courier New', Courier, monospace;
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
 }
 #tagline{
     max-width: fit-content;
-    margin-left: auto;
-    margin-right: auto;
-    font-size:1.5em
+    text-align: center;
+    margin: 0 auto;
+    font-size:1.5em;
 }
 #title {
     max-width: fit-content;
-    margin-left: auto;
-    margin-right: auto;
+    text-align: center;
+    margin: 0 auto;
     padding-top:10%;
     font-size: 3em;
     text-shadow: 3px 1px #0FFBF9, -3px 1px #FF3F4A;
 }
 #nav{
-    width: 40%;
-    margin-left: auto;
-    margin-right: auto;
+    max-width: 500px;
+    text-align: center;
+    margin: 0 auto;
+    border: #fff 1px;
 }
 ul#menu li{
     display: inline;
-    padding: 5%;
+    padding: 2%;
 }
 a{
     color: white;
@@ -34,20 +38,18 @@ hr{
     width:60%;
 }
 #content{
-    width:80%;
+    width: 90%;
+    max-width: 1000px;
     text-align: center;
     margin-left: auto;
     margin-right: auto;
-    padding-top:5%;
+    padding-top:2%;
 }
 .post-content {
-    background: #fff;
     margin: 20px 0;
     padding: 15px;
-    border: #ddd 1px solid;
 }
 .container {
-    width: 80%;
     margin: auto;
     overflow: hidden;
 }
