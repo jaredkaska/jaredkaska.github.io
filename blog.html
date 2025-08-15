@@ -4,12 +4,42 @@
             Jared Kaska | Network & IT
         </title>
         <link rel="stylesheet" href="style.css">
+        <script>
+            async function loadPosts(page = 1, perPage = 5) {
+                const res = await fetch('blog/posts.json');
+                const posts = await res.json();
+                const start = (page - 1) * perPage;
+                const end = start + perPage;
+                const paginated = posts.slice(start, end);
+
+                const container = document.getElementById('posts-container');
+                container.innerHTML = '';
+                paginated.forEach(post => {
+                    container.innerHTML += `
+                        <div class="post-preview">
+                            <h2>${post.title}</h2>
+                            <h3>${post.date}</h3>
+                            <p>${post.preview}</p>
+                            <a href="blog/${post.filename}">Read More</a>
+                        </div>
+                    `;
+                });
+
+                const totalPages = Math.ceil(posts.length / perPage);
+                let pagination = '';
+                for (let i = 1; i <= totalPages; i++) {
+                    pagination += `<button onclick="loadPosts(${i},${perPage})">${i}</button> `;
+                }
+                document.getElementById('pagination').innerHTML = pagination;
+            }
+            window.onload = () => loadPosts();
+        </script>
     </head>
     <body>
         <div id="title">Jared Kaska</div>
         <div id="tagline">Network Guy</div>
         <div id="nav"><ul id="menu">
-            <li><a href="#">Home</a></li>
+            <li><a href="https://jaredkaska.com/">Home</a></li>
             <li><a href="blog.html">Blog</a></li>
             <li><a href="tools.html">Tools</a></li>
             <li><a href="contact.html">Contact</a></li>
@@ -21,14 +51,8 @@
             </div>
         </header>
         <div id="content">
-            <div class="container">
-                <div class="post-preview">
-                    <h2>I made a website.</h2>
-                    <h3>01/27/2025</h3>
-                    <p>This is probably the most polished website I've ever created, and it's completely due to how simple it is.</p>
-                    <a href="/blog/post1.html">Read More</a>
-                </div>
-            </div>
+            <div class="container" id="posts-container"></div>
+            <div id="pagination" style="text-align:center;margin-top:20px;"></div>
         </div>
     </body>
 </html>
